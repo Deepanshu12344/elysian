@@ -1,0 +1,806 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+/*
+ * Design system definition.
+ *
+ * The @theme inline block maps CSS custom properties to Tailwind utility
+ * classes (e.g. --color-primary -> bg-primary, text-primary).
+ *
+ * The :root and .dark blocks define the actual color values using oklch.
+ * All colors MUST use oklch format.
+ *
+ * To add a new semantic color:
+ * 1. Add the variable to :root (light value) and .dark (dark value)
+ * 2. Register it in @theme inline as --color-<name>: var(--<name>)
+ */
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --radius-3xl: calc(var(--radius) + 12px);
+  --radius-4xl: calc(var(--radius) + 16px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-ring-offset-background: var(--background);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+}
+
+:root {
+  --radius: 1rem;
+  --background: oklch(0.961 0.008 88);
+  --foreground: oklch(0.211 0.005 60);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.129 0.042 264.695);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.129 0.042 264.695);
+  --primary: oklch(0.444 0.05 150);
+  --primary-foreground: oklch(0.984 0.003 247.858);
+  --secondary: oklch(0.922 0.012 88);
+  --secondary-foreground: oklch(0.208 0.042 265.755);
+  --muted: oklch(0.968 0.007 247.896);
+  --muted-foreground: oklch(0.492 0.014 65);
+  --accent: oklch(0.917 0.025 145);
+  --accent-foreground: oklch(0.208 0.042 265.755);
+  --destructive: oklch(0.577 0.245 27.325);
+  --destructive-foreground: oklch(0.984 0.003 247.858);
+  --border: oklch(0.211 0.005 60 / 17%);
+  --input: oklch(0.211 0.005 60 / 30%);
+  --ring: oklch(0.704 0.04 256.788);
+  --chart-1: oklch(0.646 0.222 41.116);
+  --chart-2: oklch(0.6 0.118 184.704);
+  --chart-3: oklch(0.398 0.07 227.392);
+  --chart-4: oklch(0.828 0.189 84.429);
+  --chart-5: oklch(0.769 0.188 70.08);
+  --sidebar: oklch(0.984 0.003 247.858);
+  --sidebar-foreground: oklch(0.129 0.042 264.695);
+  --sidebar-primary: oklch(0.208 0.042 265.755);
+  --sidebar-primary-foreground: oklch(0.984 0.003 247.858);
+  --sidebar-accent: oklch(0.968 0.007 247.896);
+  --sidebar-accent-foreground: oklch(0.208 0.042 265.755);
+  --sidebar-border: oklch(0.929 0.013 255.508);
+  --sidebar-ring: oklch(0.704 0.04 256.788);
+}
+
+.dark {
+  --background: oklch(0.129 0.042 264.695);
+  --foreground: oklch(0.984 0.003 247.858);
+  --card: oklch(0.208 0.042 265.755);
+  --card-foreground: oklch(0.984 0.003 247.858);
+  --popover: oklch(0.208 0.042 265.755);
+  --popover-foreground: oklch(0.984 0.003 247.858);
+  --primary: oklch(0.929 0.013 255.508);
+  --primary-foreground: oklch(0.208 0.042 265.755);
+  --secondary: oklch(0.279 0.041 260.031);
+  --secondary-foreground: oklch(0.984 0.003 247.858);
+  --muted: oklch(0.279 0.041 260.031);
+  --muted-foreground: oklch(0.704 0.04 256.788);
+  --accent: oklch(0.279 0.041 260.031);
+  --accent-foreground: oklch(0.984 0.003 247.858);
+  --destructive: oklch(0.704 0.191 22.216);
+  --destructive-foreground: oklch(0.984 0.003 247.858);
+  --border: oklch(1 0 0 / 10%);
+  --input: oklch(1 0 0 / 15%);
+  --ring: oklch(0.551 0.027 264.364);
+  --chart-1: oklch(0.488 0.243 264.376);
+  --chart-2: oklch(0.696 0.17 162.48);
+  --chart-3: oklch(0.769 0.188 70.08);
+  --chart-4: oklch(0.627 0.265 303.9);
+  --chart-5: oklch(0.645 0.246 16.439);
+  --sidebar: oklch(0.208 0.042 265.755);
+  --sidebar-foreground: oklch(0.984 0.003 247.858);
+  --sidebar-primary: oklch(0.488 0.243 264.376);
+  --sidebar-primary-foreground: oklch(0.984 0.003 247.858);
+  --sidebar-accent: oklch(0.279 0.041 260.031);
+  --sidebar-accent-foreground: oklch(0.984 0.003 247.858);
+  --sidebar-border: oklch(1 0 0 / 10%);
+  --sidebar-ring: oklch(0.551 0.027 264.364);
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+  }
+}
+
+@theme inline {
+  --font-display: "Clash Display", sans-serif;
+  --font-sans: "Plus Jakarta Sans", sans-serif;
+  --color-overlay: var(--overlay);
+  --color-on-image: var(--on-image);
+}
+:root {
+  --overlay: oklch(0.211 0.005 60);
+  --on-image: oklch(0.99 0.004 88);
+}
+body {
+  font-family: "Plus Jakarta Sans", sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 100px;
+}
+* {
+  letter-spacing: 0;
+}
+::selection {
+  background: var(--primary);
+  color: var(--primary-foreground);
+}
+.page-width {
+  max-width: 1536px;
+  margin-inline: auto;
+  padding-inline: 48px;
+}
+.eyebrow {
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+.studio-header {
+  height: 100px;
+}
+.wordmark {
+  font-family: var(--font-display);
+  font-size: 33px;
+  font-weight: 600;
+  line-height: 0.85;
+}
+.wordmark small {
+  display: block;
+  font-family: var(--font-sans);
+  font-size: 8px;
+  margin-top: 8px;
+  text-transform: uppercase;
+}
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1.02fr 1.12fr 0.64fr;
+  gap: 24px;
+  padding-top: 35px;
+  padding-bottom: 40px;
+}
+.hero-left {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  padding-block: 12px;
+}
+.hero-title {
+  font-family: var(--font-display);
+  font-size: 58px;
+  font-weight: 600;
+  line-height: 0.98;
+  margin: 28px 0 34px;
+  position: relative;
+  z-index: 1;
+}
+.hero-title span {
+  display: block;
+}
+.hero-title .last-line {
+  display: flex;
+  align-items: center;
+  gap: 17px;
+}
+.hero-title .last-line svg {
+  width: 41px;
+  height: 41px;
+  color: var(--primary);
+  stroke-width: 1.2;
+}
+.hero-media {
+  height: 124px;
+  width: 235px;
+  position: relative;
+  overflow: hidden;
+  border-radius: 12px;
+}
+.hero-media img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  object-position: center 45%;
+  transition: transform 0.6s;
+}
+.hero-media:hover img {
+  transform: scale(1.05);
+}
+.hero-photo {
+  min-height: 598px;
+  position: relative;
+  overflow: hidden;
+  border-radius: 16px;
+}
+.hero-photo > img {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 53% center;
+}
+.hero-photo::after {
+  content: "";
+  position: absolute;
+  inset: 50% 0 0;
+  background: linear-gradient(transparent, color-mix(in oklch, var(--overlay) 58%, transparent));
+  pointer-events: none;
+}
+.hero-right {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding-block: 12px;
+  min-width: 0;
+}
+.feature-photo {
+  aspect-ratio: 1.5;
+  overflow: hidden;
+  border-radius: 12px;
+}
+.feature-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 60%;
+  transition: transform 0.6s;
+}
+.feature-photo:hover img {
+  transform: scale(1.05);
+}
+.marquee {
+  overflow: hidden;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  padding: 22px 0;
+}
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: drift 40s linear infinite;
+}
+.marquee-track span {
+  font-family: var(--font-display);
+  font-size: 21px;
+  font-weight: 500;
+  white-space: nowrap;
+  padding-right: 35px;
+}
+.marquee-track b {
+  color: var(--primary);
+  margin-inline: 26px;
+  font-weight: 400;
+}
+.section-space {
+  padding-block: 80px;
+}
+.section-title {
+  font-family: var(--font-display);
+  font-size: 47px;
+  line-height: 1.06;
+  font-weight: 500;
+}
+.project-grid {
+  display: grid;
+  grid-template-columns: 1.1fr 0.85fr 1fr;
+  gap: 26px;
+  margin-top: 38px;
+  align-items: start;
+}
+.project-grid > :nth-child(2) {
+  margin-top: 64px;
+}
+.project-image {
+  width: 100%;
+  aspect-ratio: 0.94;
+  border-radius: 16px;
+  overflow: hidden;
+}
+.project-grid > :nth-child(2) .project-image {
+  aspect-ratio: 1.04;
+}
+.project-grid > :nth-child(3) .project-image {
+  aspect-ratio: 0.88;
+}
+.project-image img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  transition: transform 0.7s;
+}
+.project-item:hover img {
+  transform: scale(1.045);
+}
+.video-philosophy {
+  min-height: 300vh;
+  margin-top: 40px;
+}
+.video-philosophy-sticky {
+  --philosophy-frame-left: clamp(20px, 3.125vw, 48px);
+  --philosophy-frame-top: 0px;
+  --philosophy-frame-width: calc(100vw - clamp(40px, 6.25vw, 96px));
+  --philosophy-frame-height: 100%;
+  --philosophy-frame-radius: 18px;
+  --philosophy-shade-opacity: 0.5;
+  --philosophy-intro-opacity: 1;
+  --philosophy-intro-scale: 1;
+  --philosophy-copy-opacity: 0;
+  --philosophy-copy-y: 28px;
+  --philosophy-shadow-opacity: 0%;
+}
+.video-philosophy-sticky {
+  position: sticky;
+  top: 116px;
+  height: calc(100svh - 132px);
+  overflow: hidden;
+}
+.video-philosophy-frame {
+  position: absolute;
+  z-index: 1;
+  top: var(--philosophy-frame-top);
+  left: var(--philosophy-frame-left);
+  width: var(--philosophy-frame-width);
+  height: var(--philosophy-frame-height);
+  overflow: hidden;
+  border-radius: var(--philosophy-frame-radius);
+  background: var(--overlay);
+}
+.video-philosophy-media {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+}
+.video-philosophy-shade {
+  position: absolute;
+  inset: 0;
+  background: color-mix(in oklch, var(--overlay) 26%, transparent);
+  opacity: var(--philosophy-shade-opacity);
+  pointer-events: none;
+}
+.video-philosophy-intro {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: min(90vw, 880px);
+  margin: 0;
+  color: var(--on-image);
+  font-family: var(--font-display);
+  font-size: clamp(2.25rem, 5.1vw, 5.75rem);
+  font-weight: 600;
+  line-height: 0.95;
+  text-align: center;
+  transform: translate(-50%, -50%) scale(var(--philosophy-intro-scale));
+  opacity: var(--philosophy-intro-opacity);
+  text-shadow: 0 2px 20px color-mix(in oklch, var(--overlay) 50%, transparent);
+  pointer-events: none;
+}
+.video-philosophy-copy {
+  position: absolute;
+  z-index: 2;
+  top: 50%;
+  right: max(48px, calc((100vw - 1536px) / 2 + 48px));
+  width: min(40vw, 620px);
+  color: var(--foreground);
+  opacity: var(--philosophy-copy-opacity);
+  transform: translateY(calc(-50% + var(--philosophy-copy-y)));
+  pointer-events: none;
+}
+.video-philosophy-copy .section-title {
+  font-size: clamp(2.25rem, 3.35vw, 3.5rem);
+}
+.video-philosophy-copy > p {
+  max-width: 440px;
+  margin-top: 22px;
+  color: color-mix(in oklch, var(--foreground) 67%, transparent);
+  font-size: 0.875rem;
+  line-height: 1.85;
+}
+.video-philosophy-copy > p + p {
+  margin-top: 14px;
+}
+.video-philosophy-detail {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  max-width: 440px;
+  margin-top: 28px;
+  padding-top: 20px;
+  border-top: 1px solid var(--border);
+  font-size: 0.75rem;
+  line-height: 1.45;
+}
+.video-philosophy-detail em {
+  color: var(--muted-foreground);
+  font-style: normal;
+}
+#services {
+  padding-block: 104px;
+}
+.service-row {
+  display: grid;
+  grid-template-columns: 60px 1fr 1fr 36px;
+  gap: 30px;
+  align-items: center;
+  padding-block: 26px;
+  border-bottom: 1px solid var(--border);
+}
+.journal-showcase {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  aspect-ratio: 1.934 / 1;
+  overflow: hidden;
+}
+.journal-card {
+  position: relative;
+  display: block;
+  min-height: 0;
+  overflow: hidden;
+  color: var(--on-image);
+  isolation: isolate;
+}
+.journal-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  transition: transform 0.7s cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+.journal-card::after {
+  content: "";
+  position: absolute;
+  inset: 42% 0 0;
+  z-index: 1;
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    color-mix(in oklch, var(--overlay) 72%, transparent)
+  );
+  pointer-events: none;
+}
+.journal-card--tinted::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: color-mix(in oklch, var(--primary) 63%, transparent);
+  mix-blend-mode: multiply;
+  pointer-events: none;
+}
+.journal-card--tinted::after {
+  inset: 35% 0 0;
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    color-mix(in oklch, var(--overlay) 76%, transparent)
+  );
+}
+.journal-card-content {
+  position: absolute;
+  z-index: 2;
+  inset: auto 24px 8.1%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+.journal-card-content strong {
+  font-family: var(--font-display);
+  font-size: clamp(1.85rem, 2.45vw, 3rem);
+  font-weight: 600;
+  line-height: 0.92;
+}
+.journal-card-content span {
+  margin-top: 8px;
+  font-family: var(--font-sans);
+  font-size: clamp(0.7rem, 0.9vw, 1rem);
+  font-weight: 500;
+}
+.journal-card-content em {
+  margin-top: 36px;
+  padding-bottom: 5px;
+  border-bottom: 1px solid currentColor;
+  font-family: var(--font-sans);
+  font-size: clamp(0.65rem, 0.78vw, 0.9rem);
+  font-style: italic;
+}
+.journal-card:hover img {
+  transform: scale(1.04);
+}
+.footer-title {
+  font-family: var(--font-display);
+  font-size: 76px;
+  line-height: 1;
+  font-weight: 500;
+}
+.form-field {
+  display: block;
+  width: 100%;
+  background: transparent;
+  border: 1px solid var(--input);
+  border-radius: 6px;
+  padding: 12px;
+  font-size: 14px;
+  margin-top: 7px;
+}
+.form-field:focus {
+  outline: 2px solid var(--ring);
+  outline-offset: 2px;
+}
+@keyframes drift {
+  to {
+    transform: translateX(-50%);
+  }
+}
+/* Hero entrance: columns rise in with a stagger */
+.hero-left,
+.hero-photo,
+.hero-right {
+  opacity: 0;
+  animation: rise 0.9s cubic-bezier(0.22, 0.61, 0.36, 1) forwards;
+}
+.hero-photo {
+  animation-delay: 0.12s;
+}
+.hero-right {
+  animation-delay: 0.26s;
+}
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+/* Scroll reveal */
+.reveal-ready [data-reveal] {
+  opacity: 0;
+  transform: translateY(26px);
+  transition:
+    opacity 0.7s ease-out,
+    transform 0.75s cubic-bezier(0.22, 0.61, 0.36, 1);
+  transition-delay: var(--reveal-delay, 0s);
+  will-change: opacity, transform;
+}
+.reveal-ready [data-reveal].in-view {
+  opacity: 1;
+  transform: none;
+}
+@media (min-width: 1450px) {
+  .hero-title {
+    font-size: 68px;
+  }
+  .hero-photo {
+    min-height: 665px;
+  }
+}
+@media (max-width: 1100px) {
+  .page-width {
+    padding-inline: 30px;
+  }
+  .hero-grid {
+    grid-template-columns: 1fr 1.15fr 0.65fr;
+    gap: 20px;
+  }
+  .hero-title {
+    font-size: 47px;
+    margin-right: 0;
+  }
+  .hero-photo {
+    min-height: 560px;
+  }
+  .hero-media {
+    width: 200px;
+  }
+  .video-philosophy-copy {
+    right: 30px;
+  }
+  .footer-title {
+    font-size: 60px;
+  }
+}
+@media (max-width: 767px) {
+  .page-width {
+    padding-inline: 22px;
+  }
+  .studio-header {
+    height: 82px;
+  }
+  .hero-grid {
+    grid-template-columns: 1fr;
+    padding-top: 20px;
+    gap: 28px;
+  }
+  .hero-title {
+    font-size: 42px;
+    margin-block: 22px;
+  }
+  .hero-left {
+    padding: 0;
+  }
+  .hero-left-bottom {
+    display: grid;
+    grid-template-columns: 140px 1fr;
+    align-items: center;
+    gap: 18px;
+  }
+  .hero-media {
+    width: 140px;
+    height: 104px;
+  }
+  .hero-media > span:last-child {
+    display: none;
+  }
+  .hero-photo {
+    min-height: 0;
+    aspect-ratio: 0.89;
+  }
+  .hero-right {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 22px;
+    padding-block: 0;
+  }
+  .hero-right-copy {
+    font-size: 13px;
+    padding-block: 0;
+  }
+  .hero-right-cta {
+    grid-column: 1 / -1;
+  }
+  .section-space {
+    padding-block: 54px;
+  }
+  #services {
+    padding-block: 70px;
+  }
+  .section-title {
+    font-size: 36px;
+  }
+  .project-grid {
+    grid-template-columns: 1fr;
+    gap: 30px;
+    margin-top: 26px;
+  }
+  .project-grid > :nth-child(2) {
+    margin-top: 0;
+  }
+  .project-image,
+  .project-grid > :nth-child(2) .project-image,
+  .project-grid > :nth-child(3) .project-image {
+    aspect-ratio: 1.06;
+  }
+  .video-philosophy {
+    min-height: 0;
+    padding: 0 22px 54px;
+  }
+  .video-philosophy-sticky {
+    position: relative;
+    height: auto;
+    overflow: visible;
+  }
+  .video-philosophy-frame {
+    position: relative;
+    top: auto;
+    left: auto;
+    width: 100%;
+    height: min(72svh, 620px);
+    border-radius: 16px;
+  }
+  .video-philosophy-shade,
+  .video-philosophy-intro {
+    display: none;
+  }
+  .video-philosophy-copy {
+    position: relative;
+    top: auto;
+    right: auto;
+    width: auto;
+    margin-top: 28px;
+    opacity: 1;
+    transform: none;
+    pointer-events: auto;
+  }
+  .video-philosophy-copy .section-title {
+    font-size: 36px;
+  }
+  .service-row {
+    grid-template-columns: 24px 1fr 36px;
+    gap: 14px;
+  }
+  .service-row p {
+    grid-column: 2;
+    grid-row: 2;
+  }
+  .service-row > button {
+    grid-column: 3;
+    grid-row: 1;
+  }
+  .journal-showcase {
+    aspect-ratio: auto;
+    grid-template-columns: 1fr;
+  }
+  .journal-card {
+    min-height: 132vw;
+  }
+  .journal-card-content {
+    bottom: 9%;
+  }
+  .footer-title {
+    font-size: 50px;
+  }
+}
+@media (max-width: 380px) {
+  .hero-title {
+    font-size: 36px;
+  }
+  .hero-left-bottom {
+    grid-template-columns: 120px 1fr;
+  }
+  .hero-media {
+    width: 120px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+  .hero-left,
+  .hero-photo,
+  .hero-right,
+  [data-reveal] {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
