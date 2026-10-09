@@ -48,7 +48,26 @@ function Index() {
   const [newsletter, setNewsletter] = useState(false);
   const philosophyRef = useRef<HTMLElement>(null);
   const philosophyStickyRef = useRef<HTMLDivElement>(null);
+  const cursorRef = useRef<HTMLDivElement>(null);
   useScrollReveal([allProjects]);
+  useEffect(() => {
+    if (!window.matchMedia("(hover: hover) and (pointer: fine)").matches) return;
+
+    const cursor = cursorRef.current;
+    if (!cursor) return;
+    const moveCursor = (event: PointerEvent) => {
+      cursor.style.transform = `translate3d(${event.clientX}px, ${event.clientY}px, 0) translate(-50%, -50%)`;
+      cursor.classList.add("is-visible");
+    };
+    const hideCursor = () => cursor.classList.remove("is-visible");
+
+    window.addEventListener("pointermove", moveCursor);
+    document.documentElement.addEventListener("pointerleave", hideCursor);
+    return () => {
+      window.removeEventListener("pointermove", moveCursor);
+      document.documentElement.removeEventListener("pointerleave", hideCursor);
+    };
+  }, []);
   useEffect(() => {
     let frame = 0;
     const updateProgress = () => {
@@ -104,6 +123,7 @@ function Index() {
   }, []);
   return (
     <>
+      <div ref={cursorRef} className="negative-cursor" aria-hidden="true" />
       <header className="sticky top-0 z-30 bg-background/95 backdrop-blur-md border-b border-border">
         <div className="page-width studio-header grid grid-cols-[minmax(0,1fr)_auto] md:grid-cols-[1fr_auto_1fr] items-center gap-5">
           <a href="#" aria-label="Elysian Design Studio home" className="wordmark w-fit">

@@ -168,6 +168,33 @@ html {
   background: var(--primary);
   color: var(--primary-foreground);
 }
+.negative-cursor {
+  display: none;
+}
+@media (hover: hover) and (pointer: fine) {
+  body,
+  body * {
+    cursor: none !important;
+  }
+  .negative-cursor {
+    position: fixed;
+    z-index: 100;
+    top: 0;
+    left: 0;
+    display: block;
+    width: 15px;
+    height: 15px;
+    border-radius: 999px;
+    background: #fff;
+    mix-blend-mode: difference;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 160ms ease;
+  }
+  .negative-cursor.is-visible {
+    opacity: 1;
+  }
+}
 .page-width {
   max-width: 1536px;
   margin-inline: auto;
